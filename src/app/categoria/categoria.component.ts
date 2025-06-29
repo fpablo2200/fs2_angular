@@ -16,13 +16,11 @@ export class CategoriaComponent implements OnInit {
     pokemones: [
       { nombre: 'Gyarados EX', imagen: '../../assets/img/pokemon/pk1.jpg', precio: 21990, descuento: 1 },
       { nombre: 'Pikachu VMax', imagen: '../../assets/img/pokemon/pk2.jpg', precio: 21990, descuento: 0 },
-      { nombre: 'Mewtwo', imagen: '../../assets/img/pokemon/pk3.jpg', precio: 21990, descuento: 0 },
-      { nombre: 'Dragonite V', imagen: '../../assets/img/pokemon/pk4.jpg', precio: 21990, descuento: 1 }
+      { nombre: 'Mewtwo', imagen: '../../assets/img/pokemon/pk3.jpg', precio: 21990, descuento: 0 }
     ],
     energias: [
       { nombre: 'Energía Psíquica', imagen: '../../assets/img/energias/en1.jpg', precio: 1990 , descuento: 1 },
       { nombre: 'Energía Agua', imagen: '../../assets/img/energias/en2.jpg', precio: 1990 , descuento: 1 },
-      { nombre: 'Energía Metal', imagen: '../../assets/img/energias/en3.jpg', precio: 1990 , descuento: 1 },
       { nombre: 'Energía Lucha', imagen: '../../assets/img/energias/en4.jpg', precio: 1990 , descuento: 1 }
     ],
     partidario: [
@@ -34,7 +32,6 @@ export class CategoriaComponent implements OnInit {
     apoyo: [
       { nombre: 'Restos', imagen: '../../assets/img/apoyo/ap1.jpg', precio: 5990 , descuento: 1 },
       { nombre: 'Chaleco Asalto', imagen: '../../assets/img/apoyo/ap2.jpg', precio: 5990 , descuento: 1 },
-      { nombre: 'Cinta Desafio', imagen: '../../assets/img/apoyo/ap3.jpg', precio: 5990 , descuento: 1 },
       { nombre: 'Camilla de rescate', imagen: '../../assets/img/apoyo/ap4.jpg', precio: 5990 , descuento: 1 }
     ]
   };
