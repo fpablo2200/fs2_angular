@@ -16,18 +16,16 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private auth: AuthService) {}
 
   ngOnInit(): void {
-    // Creamos el formulario con dos campos obligatorios
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required, Validators.minLength(4)]
     });
   }
 
-  // Método para acceder fácilmente a los controles desde la vista
   get f() {
     return this.loginForm.controls;
   }
-
+  // creamos la ssession al logear
   login() {
     this.error = false;
 

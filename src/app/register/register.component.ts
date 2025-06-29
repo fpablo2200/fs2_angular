@@ -115,7 +115,6 @@ export class RegisterComponent implements OnInit {
     setTimeout(() => this.router.navigate(['/login']), 1500);
   }
 
-  // Accesos rápidos a los campos del formulario desde la vista
   get f() {
     return this.registerForm.controls;
   }

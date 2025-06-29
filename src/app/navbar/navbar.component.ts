@@ -20,7 +20,6 @@ export class NavbarComponent implements OnInit {
 
 
   cerrarSesion() {
-    console.log("🔴 Cerrando sesión...");
     this.auth.cerrarSesion();
     this.router.navigate(['/']);
   }

@@ -39,11 +39,11 @@ export class CarroComponent implements OnInit {
 
   comprar() {
     if (this.carrito.length === 0) {
-      alert('Tu carrito está vacío.');
+      alert('Carrito vacío.');
       return;
     }
 
-    alert('¡Compra realizada con éxito!');
+    alert('¡Compra realizada!');
     this.vaciarCarrito();
   }
 

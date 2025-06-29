@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class CategoriaComponent implements OnInit {
   categoria = '';
   cartas: any[] = [];
-
+  // se añaden las distintos productos por categoria
   private datos: any = {
     pokemones: [
       { nombre: 'Gyarados EX', imagen: '../../assets/img/pokemon/pk1.jpg', precio: 21990, descuento: 1 },
@@ -53,7 +53,7 @@ export class CategoriaComponent implements OnInit {
       this.cartas = this.datos[this.categoria] || [];
     });
   }
-
+  // añadir productos al carro
   agregarAlCarrito(carta: any) {
     const sesionStr = localStorage.getItem('sesion');
     const sesion = sesionStr ? JSON.parse(sesionStr) : null;

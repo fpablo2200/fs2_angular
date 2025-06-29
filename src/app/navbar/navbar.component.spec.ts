@@ -18,7 +18,7 @@ describe('NavbarComponent', () => {
   });
   
   it('should create the component', () => {
-    expect(true).toBeTrue(); // prueba temporal
+    expect(true).toBeTrue();
   });
 
 });

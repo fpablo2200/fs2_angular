@@ -14,7 +14,7 @@ describe('CategoriaComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            params: of({ nombre: 'pokemones' }) // simulamos el parámetro de la ruta
+            params: of({ nombre: 'pokemones' })
           }
         }
       ]
@@ -25,7 +25,7 @@ describe('CategoriaComponent', () => {
   });
 
     it('should create the component', () => {
-    expect(true).toBeTrue(); // prueba temporal
+    expect(true).toBeTrue();
   });
 
 });

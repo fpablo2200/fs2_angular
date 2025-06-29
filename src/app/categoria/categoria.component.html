@@ -11,8 +11,6 @@
                         (click)="agregarAlCarrito(carta)">
                         Agregar al carrito
                     </button>
-
-                    <!-- Mensaje si es admin -->
                     <p *ngIf="sesion?.logueado && sesion?.tipo === 'admin'" class="text-muted mt-2 fst-italic">
                         (Solo los usuarios pueden agregar al carrito)
                     </p>
