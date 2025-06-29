@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-indigo-800 bg-dark">
+  <div class="container-fluid">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuMovil">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menuMovil">
+      <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+        <li class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/categoria', 'pokemones']">Pokemones</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/categoria', 'energias']">Energias</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/categoria', 'partidario']">Partidario</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/categoria', 'apoyo']">Apoyos</a></li>
+
+                <!-- Si hay sesión activa -->
+        <ng-container *ngIf="sesion?.logueado">
+
+            <!-- Admin -->
+            <li class="nav-item" *ngIf="sesion?.tipo === 'admin'">
+                <a class="nav-link" routerLink="/perfiladmin">Panel Admin</a>
+            </li>
+
+            <!-- Usuario normal -->
+            <li class="nav-item" *ngIf="sesion?.tipo !== 'admin'">
+                <a class="nav-link" routerLink="/perfilusuario">Mi Perfil</a>
+            </li>
+            <li class="nav-item" *ngIf="sesion?.tipo !== 'admin'">
+                <a class="nav-link" routerLink="/carro">Carrito</a>
+            </li>
+
+            <!-- Cierre sesión -->
+            <li class="nav-item">
+                <a class="nav-link text-danger" (click)="cerrarSesion()" style="cursor: pointer;">Cerrar sesión</a>
+            </li>
+        </ng-container>
+
+        <!-- Si NO hay sesión activa -->
+        <ng-container *ngIf="!sesion?.logueado">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/login">Iniciar sesión</a>
+            </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</nav>

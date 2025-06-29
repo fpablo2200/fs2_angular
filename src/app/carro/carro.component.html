@@ -1,0 +1,35 @@
+<!-- cart -->
+<div class="container my-5">
+    <h2 class="mb-4 text-center">Carro de Compras</h2>
+    <div class="row row-cols-1 gy-4">
+
+        <div class="col" *ngFor="let item of carrito; let i = index">
+            <div class="card shadow-sm h-100">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-2 d-flex align-items-center">
+                        <img src="{{ item.img }}" alt="Magic" class="rounded-start img-cart">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">{{ item.nombre}}</h5>
+                            <small class="text-muted">Cantidad:{{item.cantidad}}</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-end pe-4">
+                        <p class="mb-1 fw-bold text-success">${{ item.precio}}</p>
+                        <button class="btn btn-sm btn-outline-danger" (click)="eliminar(i)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total -->
+        <div class="col text-end" >
+            <h4 class="mt-4">Total: <span class="text-primary fw-bold">${{total}}</span></h4>
+        </div>
+
+        <div class="col text-end"  *ngIf="carrito.length > 0">
+            <a href="pago.html" class="btn custom-btn btn-lg px-5" (click)="comprar()">Proceder al Pago</a>
+        </div>
+    </div>
+</div>

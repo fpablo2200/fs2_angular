@@ -1,0 +1,7 @@
+.custom-btn {
+    background-color: #212529 !important;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}

@@ -1,11 +1,37 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/about/about.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { CategoriaComponent } from './categoria/categoria.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { RecuperarComponent } from './recuperar/recuperar.component';
+import { CarroComponent } from './carro/carro.component';
+import { AdminComponent } from './admin/admin.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [RouterTestingModule],
-    declarations: [AppComponent]
+    declarations: [
+      AppComponent,
+      NavbarComponent,
+      HomeComponent,
+      AboutComponent,
+      LoginComponent,
+      RegisterComponent,
+      CategoriaComponent,
+      FooterComponent,
+      HeaderComponent,
+      RecuperarComponent,
+      CarroComponent,
+      AdminComponent,
+      UsuarioComponent
+    ]
   }));
 
   it('should create the app', () => {
@@ -20,10 +46,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('frontend');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('frontend app is running!');
-  });
 });

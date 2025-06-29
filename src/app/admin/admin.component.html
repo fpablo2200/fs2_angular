@@ -1,0 +1,29 @@
+<!-- Lista -->
+<div class="table-responsive tablaUser">
+    <table class="table table-bordered table-striped table-hover" >
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Tipo</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody id="tableUsers">
+            <tr *ngFor="let usuario of usuarios;  let i = index">
+                <td>{{i}}</td>
+                <td> {{ usuario.nombre }}</td>
+                <td> {{ usuario.apellido }}</td>
+                <td> {{ usuario.email }}</td>
+                <td> {{ usuario.tipo }}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm" (click)="eliminarUsuario(usuario.email)">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

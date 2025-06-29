@@ -1,0 +1,53 @@
+<section class="container py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Registro</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="registrar()" novalidate>
+            <div class="row g-3">
+            <div class="col-md-6">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre" required [class.is-invalid]="f['nombre'].invalid && f['nombre'].touched">
+            </div>
+            <div class="col-md-6">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellido" formControlName="apellido" required [class.is-invalid]="f['apellido'].invalid && f['apellido'].touched">
+            </div>
+            <div class="col-md-6">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="number" max="999999999" min="100000000" class="form-control" id="telefono" formControlName="telefono" required [class.is-invalid]="f['telefono'].invalid && f['telefono'].touched">
+            </div>
+            <div class="col-md-6">
+                <label for="rut" class="form-label">RUT</label>
+                <input type="text" class="form-control" id="rut" formControlName="rut" required [class.is-invalid]="f['rut'].invalid && f['rut'].touched">
+            </div>
+            <div class="col-md-6">
+                <label for="rut" class="form-label">Correo Electrónico</label>
+                <input type="text" class="form-control" id="email" formControlName="email" required [class.is-invalid]="f['email'].invalid && f['email'].touched">
+            </div>
+            <div class="col-md-6">
+                <label for="fechaNacimiento" class="form-label">Fecha de Cumpleaños</label>
+                <input type="date" class="form-control" id="fechaNacimiento" formControlName="fechaNacimiento" required [class.is-invalid]="f['fechaNacimiento'].invalid && f['fechaNacimiento'].touched">
+            </div>
+            <div class="col-md-6">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion" formControlName="direccion" required [class.is-invalid]="f['direccion'].invalid && f['direccion'].touched">
+            </div>
+            <div class="col-md-6">
+                <label for="password1" class="form-label">Clave</label>
+                <input type="password" class="form-control" id="password" formControlName="password" required [class.is-invalid]="f['password'].invalid && f['password'].touched">
+            </div>
+            <div class="col-md-6">
+                <label for="password2" class="form-label">Repetir Clave</label>
+                <input type="password" class="form-control" id="password2" formControlName="password2" required [class.is-invalid]="f['password2'].invalid && f['password2'].touched">
+            </div>
+            </div>
+            <div class="mt-4 text-center">
+                <button type="submit" class="btn custom-btn btn-lg px-5">Enviar</button>
+            </div>
+
+            <div class="col-12 text-center">
+            <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+            <div *ngIf="exito" class="alert alert-success mt-3">{{ exito }}</div>
+            </div>
+        </form>
+    </div>
+</section>

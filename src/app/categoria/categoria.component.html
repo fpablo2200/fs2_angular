@@ -1,0 +1,23 @@
+<section class="container">
+    <h2 class="section-title fw-bold mb-4">Categorías: {{ categoria}} </h2>
+    <div class="row g-4">
+        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let carta of cartas">
+            <div class="card h-100 shadow-sm position-relative overflow-hidden">
+                <img src="{{ carta.imagen}}" class="card-img-top img-cover" alt="Juego 1">
+                <div class="card-img-overlay d-flex flex-column justify-content-end bg-dark bg-opacity-50 text-white p-3">
+                    <h5 class="card-title fw-bold">{{ carta.nombre}}</h5>
+                    <p class="precio text-success fw-bold">{{ carta.precio}}</p>
+                     <button *ngIf="sesion?.logueado && sesion?.tipo === 'usuario'" class="btn btn-primary mt-2 custom-btn"
+                        (click)="agregarAlCarrito(carta)">
+                        Agregar al carrito
+                    </button>
+
+                    <!-- Mensaje si es admin -->
+                    <p *ngIf="sesion?.logueado && sesion?.tipo === 'admin'" class="text-muted mt-2 fst-italic">
+                        (Solo los usuarios pueden agregar al carrito)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
