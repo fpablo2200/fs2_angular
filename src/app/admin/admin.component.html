@@ -19,8 +19,11 @@
                 <td> {{ usuario.email }}</td>
                 <td> {{ usuario.tipo }}</td>
                 <td>
-                    <button class="btn btn-danger btn-sm" (click)="eliminarUsuario(usuario.email)">
+                    <button class="btn btn-danger btn-sm" (click)="eliminar(usuario.email)">
                         Eliminar
+                    </button>
+                    <button class="btn btn-danger btn-sm"  [routerLink]="['/registro', usuario.email]">
+                        Editar
                     </button>
                 </td>
             </tr>

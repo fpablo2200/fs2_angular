@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
@@ -8,16 +9,25 @@ import { Component, OnInit } from '@angular/core';
 export class AdminComponent implements OnInit {
 
   usuarios: any[] = [];
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    const data = localStorage.getItem('usuarios');
-    if (data) {
-      this.usuarios = JSON.parse(data);
-    }
+      this.http.get<any[]>('https://fpablo2200.github.io/json-api-usuarios-gams-fs2/usuarios.json')
+      .subscribe(data => {
+        this.usuarios = data;
+      });
   }
 
-  eliminarUsuario(correo: string): void {
-    this.usuarios = this.usuarios.filter(u => u.email !== correo);
-    localStorage.setItem('usuarios', JSON.stringify(this.usuarios));
+
+  // Cargar los datos de un juego al formulario para editarlos
+
+
+  // Eliminar usuario por email 
+  eliminar(email: String): void {
+    this.usuarios = this.usuarios.filter(j => j.email !== email); // Eliminacion simulada
   }
+
+
+
+
 }

@@ -17,6 +17,7 @@ import { RecuperarComponent } from './recuperar/recuperar.component';
 import { CarroComponent } from './carro/carro.component';
 import { AdminComponent } from './admin/admin.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

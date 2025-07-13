@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -12,8 +14,14 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   error: string = '';
   exito: string = '';
+  modoEdicion = false;
+  usuarios: any[] = [];
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router,
+    private route: ActivatedRoute,
+    private http: HttpClient) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -27,6 +35,31 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(4)]],
       password2: ['', Validators.required]
     }, { validators: [this.passwordsIgualesValidator] });
+    
+    const email = this.route.snapshot.paramMap.get('email');
+    if (email) {
+      this.http.get<any[]>('https://fpablo2200.github.io/json-api-usuarios-gams-fs2/usuarios.json')
+        .subscribe(data => {
+          const usuario = data.find(u => u.email === email);
+          if (usuario) {
+            this.registerForm.patchValue({
+              nombre: usuario.nombre,
+              apellido: usuario.apellido,
+              telefono: usuario.telefono,
+              rut: usuario.rut,
+              email: usuario.email,
+              fechaNacimiento: usuario.fechaNacimiento,
+              direccion: usuario.direccion,
+              password: usuario.password,
+              password2: usuario.password
+            });
+          }
+        });
+      this.registerForm.get('email')?.disable(); // evitar editar
+      this.modoEdicion = true;
+    }else{
+      this.modoEdicion = false;
+    }
   }
 
   //edad
@@ -85,34 +118,54 @@ export class RegisterComponent implements OnInit {
   }
 
   registrar() {
-    this.error = '';
-    this.exito = '';
+    const sesionStr = localStorage.getItem('sesion');
+    const sesion = sesionStr ? JSON.parse(sesionStr) : null;
 
-    if (this.registerForm.invalid) {
-      this.error = 'Revisa los campos, hay errores en el formulario.';
-      return;
+    if (this.modoEdicion) {
+         this.http.get<any[]>('https://fpablo2200.github.io/json-api-usuarios-gams-fs2/usuarios.json')
+          .subscribe(data => {
+            //buscamos indice a remplazar 
+            const index = data.find(u => u.email === this.registerForm.value.email);
+            if (index !== -1) {
+              this.usuarios[index] = { ...this.registerForm };
+            }
+          });
+
+      this.modoEdicion = false; // fin modo edición
+      this.exito = 'Usuario editado con éxito.';
+      setTimeout(() => this.router.navigate(['/perfiladmin']), 1500);
     }
-
-    const { nombre, apellido, telefono , rut , fechaNacimiento , direccion, email, password } = this.registerForm.value;
-
-    const nuevoUsuario = {
-      nombre,
-      apellido,
-      telefono,
-      rut,
-      email,
-      fechaNacimiento,
-      direccion,
-      password,
-      tipo: 'usuario'
-    };
-
-    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
-    usuarios.push(nuevoUsuario);
-    localStorage.setItem('usuarios', JSON.stringify(usuarios));
-
-    this.exito = 'Usuario registrado con éxito. Ahora puedes iniciar sesión.';
-    setTimeout(() => this.router.navigate(['/login']), 1500);
+    else{
+      this.error = '';
+      this.exito = '';
+  
+      if (this.registerForm.invalid) {
+        this.error = 'Revisa los campos, hay errores en el formulario.';
+        return;
+      }
+  
+      const { nombre, apellido, telefono , rut , fechaNacimiento , direccion, email, password } = this.registerForm.value;
+  
+      const nuevoUsuario = {
+        nombre,
+        apellido,
+        telefono,
+        rut,
+        email,
+        fechaNacimiento,
+        direccion,
+        password,
+        tipo: 'usuario'
+      };
+  
+      const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+      usuarios.push(nuevoUsuario);
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+  
+      this.exito = 'Usuario registrado con éxito. Ahora puedes iniciar sesión.';
+      setTimeout(() => this.router.navigate(['/login']), 1500);
+      
+    }
   }
 
   get f() {

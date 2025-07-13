@@ -2,6 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterComponent } from './register.component';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -10,9 +13,10 @@ describe('RegisterComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterComponent], 
-      imports: [ReactiveFormsModule], 
+      imports: [ReactiveFormsModule, HttpClientTestingModule], 
       providers: [
-        { provide: Router, useValue: { navigate: () => {} } } 
+        { provide: Router, useValue: { navigate: jasmine.createSpy('navigate') } },
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => null } } } }
       ]
     }).compileComponents(); 
 

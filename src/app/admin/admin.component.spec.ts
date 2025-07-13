@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AdminComponent } from './admin.component';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
@@ -8,7 +11,11 @@ describe('AdminComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AdminComponent]
+      declarations: [AdminComponent],
+      imports: [ReactiveFormsModule, HttpClientTestingModule], 
+          providers: [
+            { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => null } } } }
+          ]
     });
     fixture = TestBed.createComponent(AdminComponent);
     component = fixture.componentInstance;
