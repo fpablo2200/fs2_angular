@@ -18,16 +18,9 @@ export class AdminComponent implements OnInit {
       });
   }
 
-
-  // Cargar los datos de un juego al formulario para editarlos
-
-
   // Eliminar usuario por email 
   eliminar(email: String): void {
     this.usuarios = this.usuarios.filter(j => j.email !== email); // Eliminacion simulada
   }
-
-
-
 
 }
